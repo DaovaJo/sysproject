@@ -1,0 +1,61 @@
+import sys
+
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
+from menu2 import Ui_MainWindow
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QMainWindow,
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QVBoxLayout, QWidget)
+
+import os
+
+
+class Root(QMainWindow):
+    def __init__(self):
+        super(Root, self).__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+
+        self.ui.pushButton.clicked.connect(self.replace)
+
+
+        self.sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.sizePolicy1.setHorizontalStretch(0)
+        self.sizePolicy1.setVerticalStretch(0)
+        
+        self.font1 = QFont()
+        self.font1.setFamilies([u"Times New Roman"])
+        self.font1.setPointSize(14)
+        self.font1.setBold(True)
+        self.font1.setItalic(False)
+        self.font1.setKerning(True)
+
+        def replace(self, object):
+            self.pps = QPushButton(self.gridLayoutWidget)
+            self.pps.setObjectName(u"pps")
+            self.sizePolicy1.setHeightForWidth(self.pps.sizePolicy().hasHeightForWidth())
+            self.pps.setSizePolicy(self.sizePolicy1)
+            self.pps.setFont(self.font1)
+            self.pps.setStyleSheet(u"")
+
+            self.gridLayout.addWidget(self.pps, 0, 0, 1, 1)
+
+            self.pps.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043a\u043e\u0440\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435 \u043f\u043e \u041f\u041f\u0421", None))
+
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+
+    window = Root()
+    window.show()
+
+    sys.exit(app.exec())
